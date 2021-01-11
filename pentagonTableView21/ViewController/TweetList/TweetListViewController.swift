@@ -9,21 +9,41 @@ import UIKit
 
 class TweetListViewController: UIViewController {
 
+    @IBOutlet weak var tweetTableView: UITableView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+    }
+    
+}
 
-        // Do any additional setup after loading the view.
+
+//MARK: - private extension
+private extension TweetListViewController {
+
+    
+     //tableVIewの設定
+    func setupTableView() {
+        tweetTableView.delegate = self
+        tweetTableView.dataSource = self
+    }
+}
+
+//MARK: - UITableViewDelegate
+    extension TweetListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+//MARK: - UITableViewDataSource
+extension TweetListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
     }
-    */
-
+    
+    
+    
+    
 }
