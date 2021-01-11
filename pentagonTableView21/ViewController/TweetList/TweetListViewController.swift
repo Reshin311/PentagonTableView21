@@ -11,6 +11,8 @@ class TweetListViewController: UIViewController {
 
     @IBOutlet weak var tweetTableView: UITableView!
   
+     let array = [0, 1, 2, 3, 4, 5, 6]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -27,20 +29,41 @@ private extension TweetListViewController {
     func setupTableView() {
         tweetTableView.delegate = self
         tweetTableView.dataSource = self
+        tweetTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 }
 
 //MARK: - UITableViewDelegate
     extension TweetListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = UITableViewCell()
+  //      indexPath.section
+  //      indexPath.row
+      
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = "\(array[indexPath.row])"
+        return cell
     }
 
-}
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("\(#function) \(array[indexPath.row])")
+        }
+    }
+        
+        
 //MARK: - UITableViewDataSource
 extension TweetListViewController: UITableViewDataSource {
+   
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+        
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return array.count
     }
     
     
